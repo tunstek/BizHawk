@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClCompile Include="LuaDLL.cpp" />
     <ClCompile Include="luaglue.cpp" />
+    <ClCompile Include="wrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lapi.h" />

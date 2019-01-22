@@ -1,8 +1,8 @@
-
 /snes9xgit
 
 svnrev.cs
 .vs/**
+LuaInterface/.vs/
 **/bin/**
 **/obj/**
 /output/**
