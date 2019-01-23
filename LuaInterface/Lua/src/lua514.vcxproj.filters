@@ -5,6 +5,8 @@
     <ClCompile Include="luaglue.cpp" />
     <ClCompile Include="wrapper.cpp" />
     <ClCompile Include="..\..\..\..\dlib-19.16\dlib\all\source.cpp" />
+    <ClCompile Include="dlib_test.cpp" />
+    <ClCompile Include="fann_test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lapi.h" />
@@ -29,6 +31,8 @@
     <ClInclude Include="lundump.h" />
     <ClInclude Include="lvm.h" />
     <ClInclude Include="lzio.h" />
+    <ClInclude Include="dlib_test.h" />
+    <ClInclude Include="fann_test.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="libs">
@@ -39,5 +43,8 @@
     <CustomBuild Include="..\..\Libs\luaperks.7z">
       <Filter>libs</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="xor.data" />
   </ItemGroup>
 </Project>

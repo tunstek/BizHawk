@@ -1,5 +1,3 @@
-#include <stdlib.h>
-
 #define lmathlib_c
 #define LUA_LIB
 
@@ -10,53 +8,68 @@ extern "C" {
 	#include "lualib.h"
 }
 
-#include <dlib/dnn.h>
+#include <stdlib.h>
 #include <iostream>
-#include <dlib/data_io.h>
+
+//#include "dlib_test.h"
+//#include "fann_test.h";
 
 using namespace std;
-using namespace dlib;
+
+
+// *** PRINTF DOES NOT WORK FROM THE CORE, EVEN IN C ***
+// *** BEST WORKAROUND WOULD BE TO RETURN THE STRING I WANT TO PRINT AND PRINT FROM LUA, pretty annoying though.. ***
+
+
+static int wrapper_return_string_test(lua_State *L) {
+	char* s = "This is a C string";
+	lua_pushstring(L, s);
+	return 1;
+}
+static int wrapper_return_array_test(lua_State *L) {
+	int arr[] = { 15, 11, 13, 40, 53 };
+
+	lua_newtable(L);
+	for (int i = 0; i < 5; i++)
+	{
+		lua_pushinteger(L, arr[i]);
+		lua_rawseti(L, -2, i + 1);
+	}
+	return 1;
+}
 
 
 /*
 ** Expects: 1 param
 */
 static int wrapper_square(lua_State *L) {
-	printf("C - wrapper_square"); // printf DOESN NOT WORK from inside the lua core
+	printf("THIS IS PRINTF FROM C - wrapper_square"); // printf DOES NOT WORK from inside the lua core
+	
 	float ret = luaL_checknumber(L, 1);
 	lua_pushnumber(L, ret*ret);
 	return 1;
 }
 
+/*
+static int wrapper_fann_xor_example(lua_State *L) {
+	run_fann_xor_test();
+	return 0;
+}
+*/
 
 /*
 ** Expects: 0 params
 */
 static int wrapper_dlib_example(lua_State *L) {
-	// based on http://dlib.net/dnn_introduction_ex.cpp.html
-
-	using net_type = loss_multiclass_log<
-		fc<1,
-		relu<fc<2,
-		input<matrix<unsigned char>>
-		>>>>;
-
-	// So with that out of the way, we can make a network instance.
-	net_type net;
-	// And then train it using the MNIST data.  The code below uses mini-batch stochastic
-	// gradient descent with an initial learning rate of 0.01 to accomplish this.
-	dnn_trainer<net_type> trainer(net);
-	trainer.set_learning_rate(0.01);
-	trainer.set_min_learning_rate(0.00001);
-	trainer.set_mini_batch_size(1);
-	trainer.be_verbose();
-
-	const std::vector<std::vector<int>> in = { {0,0}, {1,0}, {0,1}, {1,1} };
-	const std::vector<int> out = { 0, 1, 1, 0 };
-	//trainer.train(&in, &out);
-
-
-
+	/*
+	std::vector<float> predictions = dlib_example();
+	lua_newtable(L);
+	for (int i = 0; i < predictions.size(); i++)
+	{
+		lua_pushinteger(L, predictions[i]);
+		lua_rawseti(L, -2, i + 1);
+	}
+	*/
 	return 0;
 }
 
@@ -67,6 +80,9 @@ static int wrapper_dlib_example(lua_State *L) {
 */
 static const luaL_Reg wrapperlib[] = {
 	{ "square",   wrapper_square },
+	{ "return_string_test", wrapper_return_string_test },
+	{ "return_array_test", wrapper_return_array_test },
+	//{ "fann_xor_example", wrapper_fann_xor_example },
     { "dlib_example", wrapper_dlib_example },
 	{ NULL, NULL }
 };

@@ -324,7 +324,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-LUAPERKS|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>Z:\Documents\fifth_year\dissertation\dlib-19.16;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Z:\Documents\fifth_year\dissertation\fann\src\include;Z:\Documents\fifth_year\dissertation\fann\src;Z:\Documents\fifth_year\dissertation\dlib-19.16;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -334,7 +334,7 @@
       <AdditionalOptions>/Zc:threadSafeInit- %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>.libs\luaperks.lib;gdi32.lib;opengl32.lib;shell32.lib;user32.lib;comctl32.lib;kernel32.lib;ws2_32.lib;psapi.lib;AdvAPI32.Lib;ole32.lib;mpr.lib;comdlg32.lib;WinSpool.Lib</AdditionalDependencies>
+      <AdditionalDependencies>.libs\luaperks.lib;.libs\fannfloat.lib;gdi32.lib;opengl32.lib;shell32.lib;user32.lib;comctl32.lib;kernel32.lib;ws2_32.lib;psapi.lib;AdvAPI32.Lib;ole32.lib;mpr.lib;comdlg32.lib;WinSpool.Lib</AdditionalDependencies>
       <OutputFile>$(OutDir)lua51.dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
@@ -346,6 +346,7 @@
       </DataExecutionPrevention>
       <ImportLibrary>$(OutDir)lua51.lib</ImportLibrary>
       <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>Z:\Documents\fifth_year\dissertation\fann\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <CustomBuildStep>
       <Command>
@@ -372,6 +373,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\dlib-19.16\dlib\all\source.cpp" />
+    <ClCompile Include="fann_test.cpp" />
     <ClCompile Include="LuaDLL.cpp">
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</PreprocessToFile>
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</PreprocessToFile>
@@ -391,9 +393,12 @@
       <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExceptionHandling>
     </ClCompile>
     <ClCompile Include="luaglue.cpp" />
+    <ClCompile Include="dlib_test.cpp" />
     <ClCompile Include="wrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dlib_test.h" />
+    <ClInclude Include="fann_test.h" />
     <ClInclude Include="lapi.h" />
     <ClInclude Include="lauxlib.h" />
     <ClInclude Include="lcode.h" />
@@ -433,6 +438,9 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release-LUAPERKS|Win32'">..\..\libs\7z.exe;..\..\libs\un7z_and_touch.bat</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release-LUAPERKS|x64'">..\..\libs\7z.exe;..\..\libs\un7z_and_touch.bat</AdditionalInputs>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="xor.data" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
