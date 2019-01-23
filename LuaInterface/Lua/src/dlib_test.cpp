@@ -8,7 +8,7 @@ using namespace dlib;
 
 
 // returns a std::vector or predictions
-static std::vector<float> dlib_example() {
+std::vector<float> dlib_example() {
 	// based on http://dlib.net/dnn_introduction_ex.cpp.html
 
 	std::vector<float> ret;

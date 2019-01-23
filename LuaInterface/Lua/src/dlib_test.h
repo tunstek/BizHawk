@@ -4,5 +4,5 @@
 #include <dlib/data_io.h>
 #include <dlib/matrix.h>
 
-static std::vector<float> dlib_example();
+std::vector<float> dlib_example();
 
