@@ -11,7 +11,10 @@ extern "C" {
 #include <stdlib.h>
 #include <iostream>
 
-#include "dlib_test.h"
+//#include "dlib_test.h"
+
+#include "utils.hpp"
+//#include "test.hpp"
 
 using namespace std;
 
@@ -41,10 +44,6 @@ static int wrapper_return_array_test(lua_State *L) {
 
 
 static int wrapper_square(lua_State *L) {
-	printf("THIS IS PRINTF FROM C - wrapper_square"); // printf DOES NOT WORK from inside the lua core
-	fprintf(stderr, "THIS IS FPRINTF FROM C");
-	cout << "THIS IS COUT FROM C";
-	cerr << "THIS IS CERR FROM C";
 	float ret = luaL_checknumber(L, 1);
 	lua_pushnumber(L, ret*ret);
 	return 1;
@@ -52,7 +51,7 @@ static int wrapper_square(lua_State *L) {
 
 
 
-
+/*
 static int wrapper_dlib_example(lua_State *L) {
 
 	std::vector<float> predictions = dlib_example();
@@ -65,7 +64,7 @@ static int wrapper_dlib_example(lua_State *L) {
 	
 	return 1;
 }
-
+*/
 
 
 
@@ -76,7 +75,7 @@ static const luaL_Reg wrapperlib[] = {
 	{ "square",   wrapper_square },
 	{ "return_string_test", wrapper_return_string_test },
 	{ "return_array_test", wrapper_return_array_test },
-    { "dlib_example", wrapper_dlib_example },
+    //{ "dlib_example", wrapper_dlib_example },
 	{ NULL, NULL }
 };
 
@@ -87,6 +86,7 @@ static const luaL_Reg wrapperlib[] = {
 extern "C" {
 	LUALIB_API int luaopen_wrapper(lua_State *L) {
 		luaL_register(L, LUA_WRAPPERLIBNAME, wrapperlib);
+
 		return 1;
 	}
 }

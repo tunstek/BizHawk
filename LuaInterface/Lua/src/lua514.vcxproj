@@ -56,7 +56,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-LUAPERKS|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v140_xp</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -410,6 +410,7 @@
     <ClInclude Include="lobject.h" />
     <ClInclude Include="lopcodes.h" />
     <ClInclude Include="lparser.h" />
+    <ClInclude Include="lprint.hpp" />
     <ClInclude Include="lstate.h" />
     <ClInclude Include="lstring.h" />
     <ClInclude Include="ltable.h" />
@@ -419,6 +420,7 @@
     <ClInclude Include="lundump.h" />
     <ClInclude Include="lvm.h" />
     <ClInclude Include="lzio.h" />
+    <ClInclude Include="utils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\Libs\luaperks.7z">

@@ -31,6 +31,8 @@
     <ClInclude Include="lvm.h" />
     <ClInclude Include="lzio.h" />
     <ClInclude Include="dlib_test.h" />
+    <ClInclude Include="utils.hpp" />
+    <ClInclude Include="lprint.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="libs">
