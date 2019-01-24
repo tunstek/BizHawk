@@ -32,7 +32,8 @@
     <ClInclude Include="lzio.h" />
     <ClInclude Include="dlib_test.h" />
     <ClInclude Include="utils.hpp" />
-    <ClInclude Include="lprint.hpp" />
+    <ClInclude Include="StackWalker.h" />
+    <ClInclude Include="dbg.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="libs">

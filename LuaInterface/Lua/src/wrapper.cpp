@@ -1,6 +1,9 @@
 #define lmathlib_c
 #define LUA_LIB
 
+#define UNHANDLED_EXCEPTION_TEST
+#define EXCEPTION_FILTER_TEST
+
 extern "C" {
 	#include "lua.h"
 
@@ -8,12 +11,21 @@ extern "C" {
 	#include "lualib.h"
 }
 
+
+lua_State *L_State;
+
+
 #include <stdlib.h>
 #include <iostream>
 
+#include "utils.hpp"
+
+
+
+
 //#include "dlib_test.h"
 
-#include "utils.hpp"
+
 //#include "test.hpp"
 
 using namespace std;
@@ -38,6 +50,24 @@ static int wrapper_return_array_test(lua_State *L) {
 		lua_rawseti(L, -2, i + 1);
 	}
 	return 1;
+}
+static int wrapper_exception_test(lua_State *L) {
+	try
+	{
+		lprint(L_State, "Throwing exception 20");
+		throw 20;
+	}
+	catch (int e)
+	{
+		lprint(L_State, "Exception 20 caught, printing stacktrace (with boost)..");
+
+		
+		lprint(L_State, get_stacktrace());
+		lprint(L_State, "End stacktrace..");
+	}
+
+
+	return 0;
 }
 
 
@@ -75,6 +105,7 @@ static const luaL_Reg wrapperlib[] = {
 	{ "square",   wrapper_square },
 	{ "return_string_test", wrapper_return_string_test },
 	{ "return_array_test", wrapper_return_array_test },
+	{ "exception_test", wrapper_exception_test },
     //{ "dlib_example", wrapper_dlib_example },
 	{ NULL, NULL }
 };
@@ -86,7 +117,7 @@ static const luaL_Reg wrapperlib[] = {
 extern "C" {
 	LUALIB_API int luaopen_wrapper(lua_State *L) {
 		luaL_register(L, LUA_WRAPPERLIBNAME, wrapperlib);
-
+		L_State = L;
 		return 1;
 	}
 }

@@ -172,7 +172,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Z:\Documents\fifth_year\dissertation\boost_1_69_0;Z:\Documents\fifth_year\dissertation\dlib-19.16;$(ProjectDir)..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>LUA_BUILD_AS_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -324,7 +324,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-LUAPERKS|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>Z:\Documents\fifth_year\dissertation\dlib-19.16;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Z:\Documents\fifth_year\dissertation\boost_1_69_0;Z:\Documents\fifth_year\dissertation\StackWalker\Main\StackWalker;Z:\Documents\fifth_year\dissertation\dlib-19.16;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -334,7 +334,7 @@
       <AdditionalOptions>/Zc:threadSafeInit- %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>.libs\luaperks.lib;gdi32.lib;opengl32.lib;shell32.lib;user32.lib;comctl32.lib;kernel32.lib;ws2_32.lib;psapi.lib;AdvAPI32.Lib;ole32.lib;mpr.lib;comdlg32.lib;WinSpool.Lib</AdditionalDependencies>
+      <AdditionalDependencies>.libs\StackWalker_VC2017.lib;.libs\luaperks.lib;gdi32.lib;opengl32.lib;shell32.lib;user32.lib;comctl32.lib;kernel32.lib;ws2_32.lib;psapi.lib;AdvAPI32.Lib;ole32.lib;mpr.lib;comdlg32.lib;WinSpool.Lib</AdditionalDependencies>
       <OutputFile>$(OutDir)lua51.dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
@@ -346,7 +346,8 @@
       </DataExecutionPrevention>
       <ImportLibrary>$(OutDir)lua51.lib</ImportLibrary>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
     <CustomBuildStep>
       <Command>
@@ -396,6 +397,7 @@
     <ClCompile Include="wrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dbg.h" />
     <ClInclude Include="dlib_test.h" />
     <ClInclude Include="lapi.h" />
     <ClInclude Include="lauxlib.h" />
@@ -410,7 +412,6 @@
     <ClInclude Include="lobject.h" />
     <ClInclude Include="lopcodes.h" />
     <ClInclude Include="lparser.h" />
-    <ClInclude Include="lprint.hpp" />
     <ClInclude Include="lstate.h" />
     <ClInclude Include="lstring.h" />
     <ClInclude Include="ltable.h" />
@@ -420,6 +421,7 @@
     <ClInclude Include="lundump.h" />
     <ClInclude Include="lvm.h" />
     <ClInclude Include="lzio.h" />
+    <ClInclude Include="StackWalker.h" />
     <ClInclude Include="utils.hpp" />
   </ItemGroup>
   <ItemGroup>
